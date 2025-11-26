@@ -29,3 +29,5 @@ C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\refint\ConnectFour.dll
 C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.pdb
 C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.genruntimeconfig.cache
 C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\ref\ConnectFour.dll
+C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\ConnectFour.sourcelink.json
+C:\Users\carol\ConnectFour\ConnectFour\obj\Debug\net8.0\scopedcss\Components\Board.razor.rz.scp.css
