@@ -23,6 +23,11 @@
     <br />
     <span class="alert-danger">@errorMessage</span>
     <span class="alert-info">@CurrentTurn</span>
+    <br />
+    <span class="alert-info">
+        Player 1 streak: @State.Player1ConsecutiveWins |
+        Player 2 streak: @State.Player2ConsecutiveWins
+    </span>
 </article>
 <div>
     <div class="board">
@@ -76,7 +81,14 @@ public Color Player2Color { get; set; } = ColorTranslator.FromHtml("blue");
     {
         errorMessage = ex.Message;
     }
-    winnerMessage = State.CheckForWin() switch
+    var result = State.CheckForWin();
+
+    if (winnerMessage == string.Empty)
+    {
+        State.UpdateConsecutiveWins(result);
+    }
+
+    winnerMessage = result switch
     {
         GameState.WinState.Player1_Wins => "Player 1 Wins!",
         GameState.WinState.Player2_Wins => "Player 2 Wins!",

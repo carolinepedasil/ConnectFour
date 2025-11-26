@@ -1,3 +1,7 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
 namespace ConnectFour;
 
 public class GameState
@@ -18,6 +22,18 @@ public class GameState
 		Player2_Wins = 2,
 		Tie = 3
 	}
+
+	/// <summary>
+	/// Number of consecutive wins Player 1 has in the current session.
+	/// This value is reset when Player 2 wins or the game ends in a tie.
+	/// </summary>
+	public int Player1ConsecutiveWins { get; private set; }
+
+	/// <summary>
+	/// Number of consecutive wins Player 2 has in the current session.
+	/// This value is reset when Player 1 wins or the game ends in a tie.
+	/// </summary>
+	public int Player2ConsecutiveWins { get; private set; }
 
 	/// <summary>
 	/// The player whose turn it is.  By default, player 1 starts first
@@ -145,7 +161,34 @@ public class GameState
 		if (TheBoard.Count(x => x != 0) == 42) return WinState.Tie;
 
 		return WinState.No_Winner;
+	}
 
+	/// <summary>
+	/// Update consecutive win counters based on the result of the game.
+	/// </summary>
+	public void UpdateConsecutiveWins(WinState result)
+	{
+			switch (result)
+			{
+					case WinState.Player1_Wins:
+							Player1ConsecutiveWins++;
+							Player2ConsecutiveWins = 0;
+							break;
+
+					case WinState.Player2_Wins:
+							Player2ConsecutiveWins++;
+							Player1ConsecutiveWins = 0;
+							break;
+
+					case WinState.Tie:
+							Player1ConsecutiveWins = 0;
+							Player2ConsecutiveWins = 0;
+							break;
+
+					case WinState.No_Winner:
+					default:
+							break;
+			}
 	}
 
 	/// <summary>
